@@ -1,28 +1,28 @@
-all: bin/hex
+all: hex
 
-lib/kontroll.o: src/kontroll.c src/head_hex.h
-	gcc -Wall -g -c -o $@ src/kontroll.c
+kontroll.o: kontroll.c head_hex.h
+	gcc -Wall -g -c -o $@ kontroll.c
 
-lib/main.o: src/main.c src/head_hex.h
-	gcc -Wall -g -c -o $@ src/main.c
+main.o: main.c head_hex.h
+	gcc -Wall -g -c -o $@ main.c
 
-lib/meny.o: src/meny.c src/head_hex.h
-	gcc -Wall -g -c -o $@ src/meny.c
+meny.o: meny.c head_hex.h
+	gcc -Wall -g -c -o $@ meny.c
 
-lib/misc.o: src/misc.c src/head_hex.h
-	gcc -Wall -g -c -o $@ src/misc.c
+misc.o: misc.c head_hex.h
+	gcc -Wall -g -c -o $@ misc.c
 
-lib/read_hex.o: src/read_hex.c src/head_hex.h
-	gcc -Wall -g -c -o $@ src/read_hex.c -lm
+read_hex.o: read_hex.c head_hex.h
+	gcc -Wall -g -c -o $@ read_hex.c -lm
 
-lib/set.o: src/set.c src/head_hex.h
-	gcc -Wall -g -c -o $@ src/set.c
+set.o: set.c head_hex.h
+	gcc -Wall -g -c -o $@ set.c
 
-lib/write_hex.o: src/write_hex.c src/head_hex.h
-	gcc -Wall -g -c -o $@ src/write_hex.c
+write_hex.o: write_hex.c head_hex.h
+	gcc -Wall -g -c -o $@ write_hex.c
 
-bin/hex: lib/kontroll.o lib/main.o lib/meny.o lib/misc.o lib/read_hex.o lib/set.o lib/write_hex.o src/head_hex.h
-	gcc -Wall -g -o $@ lib/kontroll.o lib/main.o lib/meny.o lib/misc.o lib/read_hex.o lib/set.o lib/write_hex.o -lm
+hex: kontroll.o main.o meny.o misc.o read_hex.o set.o write_hex.o head_hex.h
+	gcc -Wall -g -o $@ kontroll.o main.o meny.o misc.o read_hex.o set.o write_hex.o -lm
 
 clean:
-	rm -v lib/*.o bin/hex
+	rm -v *.o hex
